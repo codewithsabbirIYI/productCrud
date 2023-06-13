@@ -36,12 +36,21 @@
                         </select>
                     </div>
                     <div class="form-group mb-3">
+                        <label for="">Product Status</label>
+                        <select name="status" class="form-control" value = "{{ $product->status}}>
+                            <option value=""><--Select Status--></option>
+                            <option value="1">Active</option>
+                            <option value="2">Inactive</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
                         <label for="">Product Description</label>
                         <textarea name="product_description"class="form-control" cols="30" rows="5">{{ $product->product_description }}</textarea>
                     </div>
                     <div class="form-group mb-3">
                         <label for="">Product Image</label>
-                        <input name="product_image" class="form-control" type="file" value="{{ $product->product_image}}" />
+                        <input name="product_image" class="form-control" type="file" value="{{ $product->product_image}}"/>
+
                 </div>
                 <div class="form-group mb-3">
                     <input name="" class="btn btn-info" type="submit" value="Update Product"/>

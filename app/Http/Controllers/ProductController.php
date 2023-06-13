@@ -39,7 +39,7 @@ class ProductController extends Controller
             $image = $request->file('product_image');
             $custome_name = rand(). ".".$image->getClientOriginalExtension();
             $path = public_path('uploads/'.$custome_name);
-            Image::make($image)->resize(121,264)->save($path);
+            Image::make($image)->save($path);
         }
         Product::create([
             'product_name' => $request->product_name,
@@ -76,6 +76,7 @@ class ProductController extends Controller
     {
         $product =  Product::find($id);
         if($request->product_image){
+
             $old_image = $product->product_image;
             if(File::exists(public_path('uploads/'.$old_image))){
                 File::delete(public_path('uploads/'.$old_image));
@@ -89,14 +90,16 @@ class ProductController extends Controller
             $product->Product_category = $request->Product_category;
             $product->product_brand = $request->product_brand;
             $product->product_description = $request->product_description;
-            $product->product_image = $request->product_image;
+            $product->status = $request->status;
+            $product->product_image = $custome_name;
             $product->update();
         }
+
         $product->product_name = $request-> product_name;
         $product->Product_category = $request->Product_category;
         $product->product_brand = $request->product_brand;
         $product->product_description = $request->product_description;
-        $product->product_image = $request->product_image;
+        $product->status = $request->status;
         $product->update();
         return redirect()->route('manage.product')->with('message', 'product update done');
 
@@ -114,4 +117,11 @@ class ProductController extends Controller
         return redirect()->route('manage.product')->with('message', 'product update done');
 
     }
+
+    // public function allProduct(){
+    //     return response()->json([
+    //         'status' => 200,
+    //         'message' => 'data found',
+    //     ]);
+    // }
 }

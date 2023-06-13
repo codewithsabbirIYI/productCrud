@@ -29,11 +29,16 @@
                             <tr class="table-primary" >
                                 <td scope="row">{{$product->id}}</td>
                                 <td scope="row">{{$product->product_name}}</td>
-                                <td>{{$product->product_category}}</td>
+
+                                <td>{{$product->Product_category}}</td>
                                 <td>{{$product->product_brand}}</td>
                                 <td>{{$product->product_description}}</td>
                                 <td>{{$product->product_image}}</td>
-                                <td>{{$product->product_status}}</td>
+                                <td>@if ($product->status === 1)
+                                    Active
+                                @else
+                                    Inactive
+                                @endif</td>
                                 <td>
                                     <a href="{{ route('edit.product', $product->id) }}" class="btn btn-info btn-sm">Edit</a>
                                     <a href="{{route('delete.product', $product->id)}}" class="btn btn-danger btn-sm">Delete</a>

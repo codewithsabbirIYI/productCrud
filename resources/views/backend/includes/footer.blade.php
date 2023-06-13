@@ -19,5 +19,21 @@
 <script src="{{asset('backend')}}/assets/demo/chart-bar-demo.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
 <script src="{{asset('backend')}}/js/datatables-simple-demo.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // admin imgae show buttom the input field
+        $('.product_image').change(function (e) {
+            e.preventDefault();
+            let reader = new FileReader();
+            var file = document.querySelector('.product_image').files[0];
+            reader.onload = function(e){
+                $('.imagePreview').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(file);
+        });
+    });
+</script>
+
 </body>
 </html>

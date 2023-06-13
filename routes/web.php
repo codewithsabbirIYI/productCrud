@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Route::get('/dashboard', function () {
@@ -30,13 +31,21 @@ Route::middleware('auth', 'role:admin')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 
-
+    // routes for product crud
     Route::get('/add/product', [ProductController::class, 'create'])->name('add.product');
     Route::post('/store/product', [ProductController::class, 'store'])->name('store.product');
     Route::get('/edit/product/{id}', [ProductController::class, 'edit'])->name('edit.product');
     Route::post('/update/product/{id}', [ProductController::class, 'update'])->name('update.product');
     Route::get('/delete/product/{id}', [ProductController::class, 'destroy'])->name('delete.product');
     Route::get('/manage/product', [ProductController::class, 'index'])->name('manage.product');
+
+    // routes for manage users
+    Route::get('/manage/user', [UserController::class, 'index'])->name('manage.user');
+
 });
+
+
+    // Route for api
+    // Route::get('/all/product', [ProductController::class, 'allProduct'])->name('all.product');
 
 require __DIR__.'/auth.php';
